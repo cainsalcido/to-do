@@ -20,7 +20,7 @@ Getting Started
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/todo-list-app.git`
+1. Clone the repository: `git clone https://github.com/cainsalcido/todo-list-app.git`
 2. Navigate to the project directory: `cd todo-list-app`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
