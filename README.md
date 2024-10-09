@@ -1,19 +1,19 @@
-To-Do List App
+To-Do List App 📝
 =====================
 
 A simple to-do list app built with React to help you stay organized and focused.
 
-Features
+Features 📃
 --------
 
 * Add, remove, and toggle tasks
 * Mark tasks as completed
 * Simple and intuitive user interface
 
-Getting Started
+Getting Started 📌
 ---------------
 
-### Prerequisites
+### Prerequisites 
 
 * Node.js (version 14 or higher)
 * npm (version 6 or higher)
@@ -30,18 +30,18 @@ Getting Started
 1. Open your web browser and navigate to `http://localhost:3000`
 2. Start adding tasks to your to-do list!
 
-Contributing
+Contributing 🫂
 ------------
 
 Contributions are welcome! If you'd like to contribute to this project, please, fork it and contribute!
 
 
-License
+License 🪪
 -------
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-Acknowledgments
+Acknowledgments 📢
 ---------------
 
 * [Create React App](https://create-react-app.dev/) for providing a solid foundation for this project
@@ -54,12 +54,12 @@ Todo
 * Create a backend API to store data
 * Improve user interface and user experience
 
-Author
+Author 🧾
 ------
 
 [Cain Salcido](https://github.com/cainsalcido)
 
-Version
+Version ⛩️
 ---------
 
 1.0.0
