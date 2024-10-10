@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data.json';
-import firebase from '../firebase';
+import { db } from '../firebase';
 
 const TodoList = () => {
   const user = firebase.auth().currentUser;
-  const [tasks, setTasks] = useState(data.tasks);
+  const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
     title: '',
     dueDate: '',
@@ -13,14 +12,17 @@ const TodoList = () => {
 
   useEffect(() => {
     if (user) {
-      // Fetch data from API or database here
-      // For now, we'll just use the local data.json file
-      setTasks(data.tasks);
+      const tasksRef = db.ref('tasks');
+      tasksRef.on('value', (snapshot) => {
+        const tasks = snapshot.val();
+        setTasks(tasks ? Object.values(tasks) : []);
+      });
     }
   }, [user]);
 
   const handleAddTask = (task) => {
-    setTasks([...tasks, task]);
+    const tasksRef = db.ref('tasks');
+    tasksRef.push(task);
     setNewTask({
       title: '',
       dueDate: '',
@@ -29,40 +31,23 @@ const TodoList = () => {
   };
 
   const handleRemoveTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    const tasksRef = db.ref('tasks');
+    tasksRef.child(id).remove();
   };
 
   const handleToggleCompleted = (id) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: !task.completed };
-        }
-        return task;
-      })
-    );
+    const tasksRef = db.ref('tasks');
+    tasksRef.child(id).update({ completed: true });
   };
 
   const handleUpdateDueDate = (id, dueDate) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, dueDate };
-        }
-        return task;
-      })
-    );
+    const tasksRef = db.ref('tasks');
+    tasksRef.child(id).update({ dueDate });
   };
 
   const handleUpdatePriority = (id, priority) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, priority };
-        }
-        return task;
-      })
-    );
+    const tasksRef = db.ref('tasks');
+    tasksRef.child(id).update({ priority });
   };
 
   if (!user) {

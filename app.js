@@ -1,13 +1,11 @@
-import React from 'react';
-import Auth from './Auth';
-import TodoList from './TodoList';
+const express = require('express');
+const app = express();
+const port = 3000;
+const routes = require('./routes');
 
-const App = () => {
-  return (
-    <Auth>
-      <TodoList />
-    </Auth>
-  );
-};
+app.use(express.json());
+app.use('/api', routes);
 
-export default App;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
