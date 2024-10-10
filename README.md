@@ -6,6 +6,7 @@ A simple to-do list app built with React to help you stay organized and focused.
 Features 📃
 --------
 
+* Authentication (as of 10/9/2024)
 * Add, remove, and toggle tasks
 * Mark tasks as completed
 * Simple and intuitive user interface
