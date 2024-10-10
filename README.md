@@ -10,6 +10,7 @@ Features 📃
 * Add, remove, and toggle tasks
 * Mark tasks as completed
 * Simple and intuitive user interface
+* Backend API to Store Data
 
 Getting Started 📌
 ---------------
@@ -47,11 +48,7 @@ Acknowledgments 📢
 
 * [Create React App](https://create-react-app.dev/) for providing a solid foundation for this project
 
-Todo
------
 
-* Create a backend API to store data
-* Improve user interface and user experience
 
 Author 🧾
 ------
