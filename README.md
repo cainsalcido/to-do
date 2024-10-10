@@ -24,7 +24,7 @@ Getting Started 📌
 1. Clone the repository: `git clone https://github.com/cainsalcido/to-do.git`
 2. Navigate to the project directory: `cd to-do`
 3. Install dependencies: `npm install`
-Then you're ready to continue to [usage](usage)
+Then you're ready to continue to [Usage](Usage)
 
 ### Usage
 
