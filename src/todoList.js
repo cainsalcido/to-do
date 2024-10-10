@@ -5,6 +5,11 @@ import firebase from '../firebase';
 const TodoList = () => {
   const user = firebase.auth().currentUser;
   const [tasks, setTasks] = useState(data.tasks);
+  const [newTask, setNewTask] = useState({
+    title: '',
+    dueDate: '',
+    priority: '',
+  });
 
   useEffect(() => {
     if (user) {
@@ -16,6 +21,11 @@ const TodoList = () => {
 
   const handleAddTask = (task) => {
     setTasks([...tasks, task]);
+    setNewTask({
+      title: '',
+      dueDate: '',
+      priority: '',
+    });
   };
 
   const handleRemoveTask = (id) => {
@@ -60,8 +70,46 @@ const TodoList = () => {
   }
 
   return (
-    <div>
+    <div className="todo-list">
       <h1>To-Do List</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAddTask({
+            id: Math.random(),
+            title: newTask.title,
+            dueDate: newTask.dueDate,
+            priority: newTask.priority,
+            completed: false,
+          });
+        }}
+      >
+        <input
+          type="text"
+          name="title"
+          value={newTask.title}
+          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          placeholder="Add new task"
+        />
+        <input
+          type="date"
+          name="dueDate"
+          value={newTask.dueDate}
+          onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
+          placeholder="Due Date"
+        />
+        <select
+          name="priority"
+          value={newTask.priority}
+          onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
+        >
+          <option value="">Select Priority</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+        <button type="submit">Add Task</button>
+      </form>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
@@ -70,11 +118,17 @@ const TodoList = () => {
               checked={task.completed}
               onChange={() => handleToggleCompleted(task.id)}
             />
-            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+            <span
+              style={{
+                textDecoration: task.completed ? 'line-through' : 'none',
+                color: task.completed ? 'gray' : 'black',
+              }}
+            >
               {task.title}
             </span>
-            <span>Due: {task.dueDate}</span>
-            <span>Priority: {task.priority}</span>
+            <span>
+              Due: {task.dueDate} ({task.priority})
+            </span>
             <button onClick={() => handleRemoveTask(task.id)}>Remove</button>
             <button onClick={() => handleUpdateDueDate(task.id, prompt('Enter new due date'))}>
               Update Due Date
@@ -85,23 +139,6 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const task = {
-            id: Math.random(),
-            title: e.target.elements.title.value,
-            completed: false,
-            dueDate: '',
-            priority: '',
-          };
-          handleAddTask(task);
-          e.target.elements.title.value = '';
-        }}
-      >
-        <input type="text" name="title" placeholder="Add new task" />
-        <button type="submit">Add Task</button>
-      </form>
     </div>
   );
 };
