@@ -50,8 +50,6 @@ Acknowledgments 📢
 Todo
 -----
 
-* Implement user authentication
-* Add due dates and prioritization
 * Create a backend API to store data
 * Improve user interface and user experience
 

@@ -33,6 +33,28 @@ const TodoList = () => {
     );
   };
 
+  const handleUpdateDueDate = (id, dueDate) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, dueDate };
+        }
+        return task;
+      })
+    );
+  };
+
+  const handleUpdatePriority = (id, priority) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, priority };
+        }
+        return task;
+      })
+    );
+  };
+
   if (!user) {
     return <div>You need to login to access your todo list</div>;
   }
@@ -51,20 +73,34 @@ const TodoList = () => {
             <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
               {task.title}
             </span>
+            <span>Due: {task.dueDate}</span>
+            <span>Priority: {task.priority}</span>
             <button onClick={() => handleRemoveTask(task.id)}>Remove</button>
+            <button onClick={() => handleUpdateDueDate(task.id, prompt('Enter new due date'))}>
+              Update Due Date
+            </button>
+            <button onClick={() => handleUpdatePriority(task.id, prompt('Enter new priority'))}>
+              Update Priority
+            </button>
           </li>
         ))}
       </ul>
-      <form>
-        <input type="text" placeholder="Add new task" />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            handleAddTask({ id: tasks.length + 1, title: e.target.previousSibling.value });
-          }}
-        >
-          Add Task
-        </button>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const task = {
+            id: Math.random(),
+            title: e.target.elements.title.value,
+            completed: false,
+            dueDate: '',
+            priority: '',
+          };
+          handleAddTask(task);
+          e.target.elements.title.value = '';
+        }}
+      >
+        <input type="text" name="title" placeholder="Add new task" />
+        <button type="submit">Add Task</button>
       </form>
     </div>
   );
