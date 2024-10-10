@@ -20,7 +20,7 @@ const Auth = ({ children }) => {
     e.preventDefault();
     try {
       if (isRegistering) {
-        await firebase.auth().createUser WithEmailAndPassword(email, password);
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
       } else {
         await firebase.auth().signInWithEmailAndPassword(email, password);
       }
