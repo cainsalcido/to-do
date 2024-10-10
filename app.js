@@ -1,12 +1,13 @@
 import React from 'react';
+import Auth from './Auth';
 import TodoList from './TodoList';
 
-function App() {
+const App = () => {
   return (
-    <div>
+    <Auth>
       <TodoList />
-    </div>
+    </Auth>
   );
-}
+};
 
 export default App;

@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data.json';
+import firebase from '../firebase';
 
-function TodoList() {
+const TodoList = () => {
+  const user = firebase.auth().currentUser;
   const [tasks, setTasks] = useState(data.tasks);
 
   useEffect(() => {
-    // Fetch data from API or database here
-  }, []);
+    if (user) {
+      // Fetch data from API or database here
+      // For now, we'll just use the local data.json file
+      setTasks(data.tasks);
+    }
+  }, [user]);
 
   const handleAddTask = (task) => {
     setTasks([...tasks, task]);
@@ -26,6 +32,10 @@ function TodoList() {
       })
     );
   };
+
+  if (!user) {
+    return <div>You need to login to access your todo list</div>;
+  }
 
   return (
     <div>
@@ -47,12 +57,17 @@ function TodoList() {
       </ul>
       <form>
         <input type="text" placeholder="Add new task" />
-        <button onClick={(e) => handleAddTask({ id: tasks.length + 1, title: e.target.value })}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddTask({ id: tasks.length + 1, title: e.target.previousSibling.value });
+          }}
+        >
           Add Task
         </button>
       </form>
     </div>
   );
-}
+};
 
 export default TodoList;
