@@ -24,18 +24,18 @@ Getting Started 📌
 1. Clone the repository: `git clone https://github.com/cainsalcido/to-do.git`
 2. Navigate to the project directory: `cd to-do`
 3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
+Then you're ready to continue to [usage](usage)
 
 ### Usage
 
-1. Open your web browser and navigate to `http://localhost:3000`
-2. Start adding tasks to your to-do list!
+1. Configure Firebase: Ensure you have a Firebase project set up. Replace the placeholders in `firebase/firebaseConfig.js` with your Firebase configuration values.
+2. Start the Development Server: `npm start`
+3. Open the Application: Open your web browser and navigate to `http://localhost:3000`. You can now use the To-Do List App to manage your tasks.
 
 Contributing 🫂
 ------------
 
 Contributions are welcome! If you'd like to contribute to this project, please, fork it and contribute!
-
 
 License 🪪
 -------
